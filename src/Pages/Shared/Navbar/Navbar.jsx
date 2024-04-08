@@ -3,13 +3,13 @@ import userIMG from '../../../../src/assets/user.png'
 const Navbar = () => {
 
     const navLinks = <>
-        <li><NavLink to='/home'>Home</NavLink></li>
+        <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/about'>About</NavLink></li>
         <li><NavLink to='/career'>Career</NavLink></li>
 
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 mt-[21px] mb-[76px]">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
