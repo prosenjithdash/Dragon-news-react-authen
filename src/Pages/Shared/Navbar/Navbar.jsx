@@ -1,6 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import userIMG from '../../../../src/assets/user.png'
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 const Navbar = () => {
+
 
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
@@ -8,6 +11,22 @@ const Navbar = () => {
         <li><NavLink to='/career'>Career</NavLink></li>
 
     </>
+    const { user, logOut } = useContext(AuthContext);
+
+    // handleSignOut
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+                // Sign-out successful.
+                alert('Successfully LogOut')
+            })
+            .catch(() => {
+                // An error happened.
+                alert('Wrong LogOut, Try again...')
+
+            });
+    }
+
     return (
         <div className="navbar bg-base-100 mt-[21px] mb-[76px]">
             <div className="navbar-start">
@@ -27,9 +46,16 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end ">
+
                 <img className="w-[41px] h-[41px] mr-4" src={userIMG} alt="" />
-               
-                <Link to='/logIn' className=" bg-[#403F3F] rounded-lg text-white px-8 py-2 font-bold">Login</Link>
+                {/* {
+                    user.photoURL ? <img className="w-[41px] h-[41px] mr-4" src={user.photoURL} alt="" /> : <img className="w-[41px] h-[41px] mr-4" src={userIMG} alt="" />
+               }
+                */}
+                {
+                    user ? <Link to='' onClick={handleSignOut} className=" bg-[#403F3F] rounded-lg text-white px-8 py-2 font-bold">Logout</Link> : <Link to='/logIn' className=" bg-[#403F3F] rounded-lg text-white px-8 py-2 font-bold">Login</Link>
+                }
+                
             </div>
         </div>
     );
