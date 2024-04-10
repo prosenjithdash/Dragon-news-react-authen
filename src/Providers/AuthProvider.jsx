@@ -12,19 +12,25 @@ const AuthProvider = ({ children }) => {
 
     // user info
     const [user, setUser] = useState(null)
-
+    //loading
+    const [loading,setLoading] = useState(true)
     // pass email and password for create user account
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
+
     }
 
     // login
     const signIn = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
+
     }
 
     // signout
     const logOut = () => {
+        setLoading(true)
         return signOut(auth);
     }
 
@@ -35,6 +41,8 @@ const AuthProvider = ({ children }) => {
 
             console.log(' User in the state auth changed', currentUser)
            setUser(currentUser)
+           //loading
+           setLoading(false)
            
             // if (currentUser) {
             //     // User is signed in, see docs for a list of available properties
@@ -54,6 +62,7 @@ const AuthProvider = ({ children }) => {
     
     const authInfo = {
         user,
+        loading,
         createUser,
         signIn,
         logOut,
